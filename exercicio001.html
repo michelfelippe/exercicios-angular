@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercicio-01 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="antecessor">
+        <h1>Mostrar número antecessor!</h1>
+        <div>
+            <label for="numero">Digite um número:</label>
+            <div><input type="number" ng-model="vnumero" id="numero"></div>
+        </div>
+
+        <div>
+            <input type="button" value="MOSTRAR" ng-click="numantecessor()">
+        </div>
+
+        <p>Número Digitado >>> {{vnumero}}</p>
+        <p>Antecessor >>> {{resultado}}</p>
+
+        <script>
+            var app = angular.module("meuApp", []);
+            app.controller("antecessor",function($scope){
+            $scope.numantecessor = function(){
+                $scope.resultado = ($scope.vnumero - 1);
+            }
+        });
+        </script>
+    </div>
+</body>
+</html>

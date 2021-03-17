@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercício-12 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="timevencedor">
+        <h1>Placar Times</h1>
+
+        <div>
+            <label for="golstime1">Gols do Primeiro Time: </label>
+            <input type="number" id="golstime1" ng-model="golst1">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="golstime2">Gols do Segundo Time: </label>
+            <input type="number" id="golstime2" ng-model="golst2">
+            <br><br>
+        </div>
+
+        <div>
+            <input type="button" value="VENCEDOR" id="botao" ng-click="vencedor()">
+            <br><br>
+        </div>
+
+        <p>{{timevitoria}}</p>
+    </div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("timevencedor", function($scope){
+            $scope.vencedor = function(){
+                if($scope.golst1 > $scope.golst2){
+                    $scope.timevitoria = "Time 1 Vencedor!!!"
+                    } else if($scope.golst2 > $scope.golst1){
+                    $scope.timevitoria = "Time 2 Vencedor!!!"
+                    } else {
+                    $scope.timevitoria = "EMPATE!!!"
+                    }
+                }
+            });
+        
+    </script>
+</body>
+</html>

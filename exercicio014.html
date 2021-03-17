@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercício-14 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="descontocompra">
+        <h1>Compra com Desconto</h1>
+
+        <div>
+            <label for="nomeproduto">Produto: </label>
+            <input type="text" id="nomeproduto" ng-model="nprod">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="valorunitario">Valor: </label>
+            <input type="number" id="valorunitario" ng-model="vunit">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="qtdeproduto">Quantidade: </label>
+            <input type="number" id="qtdeproduto" ng-model="qtdeprod">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="botao"></label>
+            <input type="button" value="CALCULAR" id="botao" ng-click="calcular()">
+            <br><br>
+        </div>
+
+        <p>Produto >>> {{nprod}}</p>
+        <p>Valor >>> R${{vunit}}</p>
+        <p>Quantidade >>> {{qtdeprod}} un.</p>
+        <p>Valor Total >>> R${{valtotal}}</p>
+        <p>Valor a Pagar (com Desconto) >>> R${{valdesc}}</p>
+        <p>{{mensagem}}</p>
+    </div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("descontocompra", function($scope){
+            $scope.calcular = function(){
+                $scope.valtotal = (+$scope.qtdeprod * +$scope.vunit);
+
+                if ($scope.qtdeprod <= 5){
+                    $scope.valdesc = (+$scope.valtotal - (+$scope.valtotal * 0.02))
+                    $scope.mensagem = "2% de desconto!!!"
+                } else if ($scope.qtdeprod <= 10){
+                    $scope.valdesc = (+$scope.valtotal - (+$scope.valtotal * 0.03))
+                    $scope.mensagem = "3% de desconto!!!"
+                } else {
+                    $scope.valdesc = (+$scope.valtotal - (+$scope.valtotal * 0.05))
+                    $scope.mensagem = "5% de desconto!!!"
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercicio-04 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="salarioReajuste">
+        <h1>Reajuste de salário mensal</h1>
+        <div>
+            <label for="salarioMensal">Insira seu <strong>SALÁRIO MENSAL</strong> atual:</label>
+            <div>
+                <input type="text" ng-model="salarioMensal" id="salarioMensal" placeholder="R$00.00">
+            </div>
+        </div>
+    
+        <div>
+            <label for="reajuste">Insira a <strong>PORCENTAGEM</strong> de reajuste:</label>
+            <div>
+                <input type="text" ng-model="reajuste" id="reajuste" placeholder="0%">
+            </div>
+        </div>
+    
+        <div>
+            <button value="calcular" ng-click="calcular()">CALCULAR</button>
+            <p>Valor do reajuste: R${{resultado}}</p>
+            <p>Novo salário: R${{novoSalario}}</p>
+        </div>
+    
+    </div>
+    
+        <script>
+            var app = angular.module("meuApp", []);
+            app.controller("salarioReajuste",function($scope){
+                $scope.calcular = function(){
+                    $scope.resultado = (($scope.salarioMensal * $scope.reajuste)/100);
+                    $scope.novoSalario = (+$scope.salarioMensal + +$scope.resultado);
+                }
+            });
+    
+        </script>
+</body>
+</html>

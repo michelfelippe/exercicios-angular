@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercício-07 Angular.JS</title>
+</head>
+<body>
+    <h1>Salário com Hora Extra</h1>
+
+    <div ng-app="meuApp" ng-controller="horaextra">
+        <div>
+            <label for="horastrab">Horas Trabalhadas no Mês: </label>
+            <input type="text" id="horastrab" ng-model="hrtrab">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="valorhora">Salário por Hora Trabalhada: </label>
+            <input type="text" id="valorhora" ng-model="vhora">
+            <br><br>
+        </div>
+
+        <div>
+            <input type="button" value="CALCULAR" id="botao" ng-click="calcular()">
+            <br><br>
+        </div>
+
+        <p>Valor Hora Extra >>> {{horaextra}}</p>
+        <p>Salário Total >>> {{saltotal}}</p>
+    </div>
+    <script>
+    var app = angular.module("meuApp", []);
+
+    app.controller("horaextra",function($scope){
+
+        $scope.calcular = function(){
+
+            if($scope.hrtrab >160){
+                $scope.horaextra = (+$scope.hrtrab - 160 ) * (+$scope.vhora * 1.5);
+                $scope.salbase = +$scope.vhora * 160;
+                $scope.saltotal = (+$scope.horaextra + +$scope.salbase);
+            }
+            else{
+                $scope.saltotal = (+$scope.hrtrab * +$scope.vhora)
+            }
+    }
+});
+    </script>
+</body>
+</html>

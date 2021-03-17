@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercício-08 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="vendas">
+        <h1>Vendas com Taxa Variável</h1>
+
+        <div>
+            <label for="salariofixo">Salário Fixo: </label>
+            <input type="text" id="salariofixo" ng-model="salfixo">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="vendasfeitas">Vendas Efetuadas: </label>
+            <input type="text" id="vendasfeitas" ng-model="vendas">
+            <br><br>
+        </div>
+
+        <div>
+            <input type="button" value="CALCULAR" id="botao" ng-click="calcular()">
+            <br><br>
+        </div>
+
+        <p>Comissão 3% >>> {{comissaotres}}</p>
+        <p>Comissão 5% >>> {{comissaocinco}}</p>
+        <p>Salário Total >>> {{saltotal}}</p>
+    </div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+
+        app.controller("vendas",function($scope){
+
+            $scope.calcular = function(){
+
+                if($scope.vendas <= 1500){
+                    $scope.comissaotres = $scope.vendas * 0.03;
+                    $scope.comissaocinco = 0.00;
+                    $scope.saltotal = (+$scope.salfixo + (+$scope.vendas * 0.03));
+                }
+                else{
+                    $scope.comissaotres = 1500 * 0.03;
+                    $scope.comissaocinco = (+$scope.vendas - 1500) * 0.05;
+                    $scope.saltotal = +$scope.salfixo + +$scope.comissaotres + +$scope.comissaocinco;
+                }
+        }
+        });
+    </script>
+</body>
+</html>

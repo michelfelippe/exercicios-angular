@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercício-15 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="naopodeserzero">
+        <h1>Números Diferentes de Zero</h1>
+
+        <div>
+            <label for="numero1">Primeiro Número: </label>
+            <input type="number" name="numero1" id="numero1" ng-model="num1">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="numero2">Primeiro Número: </label>
+            <input type="number" name="numero2" id="numero2" ng-model="num2">
+            <br><br>
+        </div>
+
+        <div>
+            <input type="button" value="IMPRIMIR" ng-click="imprimir()">
+            <br><br>
+        </div>
+        
+        <p>Valor 1 >>> {{num1}}</p>
+        <p>Valor 2 >>> {{num2}}</p>
+        <p>Divisão entre Valor 1 e 2 >>> {{divisao}}</p>
+        <p>{{mensagem}}</p>
+    </div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("naopodeserzero", function($scope){
+            $scope.imprimir = function(){
+                //$scope.divisão = 0;
+                
+                $scope.divisao = +$scope.num1 / +$scope.num2;
+                $scope.mensagem = "Divisão feita com sucesso!"
+                
+                    while ($scope.num2 == 0){
+                        $scope.divisao = "ERRO"
+                        $scope.mensagem = "NÚMERO 0 (ZERO) DIGITADO! FAVOR DIGITAR OUTRO NÚMERO!";
+                        break;
+                 };
+                
+                    /*if ($scope.num2 != 0){
+                        $scope.divisao = (+$scope.num1 / +$scope.num2);
+                        $scope.mensagem = "Divisão feita com sucesso!"
+                    } else {
+                        $scope.mensagem = "NÚMERO 0 (ZERO) DIGITADO! FAVOR DIGITAR OUTRO NÚMERO!"
+                    }*/
+                
+            }
+        });
+    </script>
+</body>
+</html>

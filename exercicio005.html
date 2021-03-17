@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercício-05 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="valorcarro">
+        <h1>Calcular Valor do Veículo com Porcentagem e Impostos</h1>
+
+        <div>
+            <label for="valorcarro">Valor do Carro na Fábrica: </label>
+            <input type="text" id="valorcarro" ng-model="vcarro" placeholder="R$39900,00">
+            <br><br>
+        </div>
+
+        <div>
+            <input type="button" value="CALCULAR" ng-click="calcular()">
+            <br><br>
+        </div>
+        <p>Valor do Carro na Fábrica >>> {{vcarro}}</p>
+        <p>Valor da Montadora >>> {{vmontadora}}</p>
+        <p>Valor de Impostos >>> {{vimpostos}}</p>
+        <p>Valor Final do Carro >>> {{vtotal}}</p>
+    </div>
+
+        <script>
+            var app = angular.module("meuApp", []);
+            app.controller("valorcarro", function($scope){
+                $scope.calcular = function(){
+                    $scope.vmontadora = +$scope.vcarro * 0.28
+                    $scope.vimpostos = +$scope.vcarro * 0.45
+                    $scope.vtotal = +$scope.vcarro + (+$scope.vcarro * 0.28) + (+$scope.vcarro * 0.45)
+                }
+            });
+        </script>
+    
+</body>
+</html>

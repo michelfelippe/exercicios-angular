@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <title>Exercicio-02 Angular.JS</title>
+    </head>
+<body>
+
+<div ng-app="meuApp" ng-controller="rentangulo">
+    
+    <h1>Calculo de área de retângulo.</h1>
+
+    <div>
+        <label for="base">Digite o valor para a <strong>BASE</strong> do retângulo</label>
+        <div><input type="text" ng-model="valorBase" id="base"></div>
+    </div>
+
+    <div>
+        <label for="altura">Digite o valor para a <strong>ALTURA</strong> do retângulo</label>
+        <div><input type="text" ng-model="valorAltura" id="altura"></div>
+    </div>
+
+    <div>
+        <button value="calcular" ng-click="calcular()">CALCULAR</button>
+        <p>Resultado: {{resultado}}</p>
+    </div>
+
+
+</div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("rentangulo",function($scope){
+            $scope.calcular = function(){
+                $scope.resultado = ($scope.valorBase * $scope.valorAltura);
+            }
+        });
+
+    </script>
+
+</body>
+</html>

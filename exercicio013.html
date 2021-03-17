@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercício-13 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="comparaidade">
+        <h1>Comparar Idade Homens x Mulheres</h1>
+
+        <div>
+            <label for="idadehomem1">Idade Primeiro Homem: </label>
+            <input type="number" id="idadehomem1" ng-model="idadeh1">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="idadehomem1">Idade Segundo Homem: </label>
+            <input type="number" id="idadehomem2" ng-model="idadeh2">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="idadehomem1">Idade Primeira Mulher: </label>
+            <input type="number" id="idademulher1" ng-model="idadem1">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="idadehomem1">Idade Segunda Mulher: </label>
+            <input type="number" id="idademulher2" ng-model="idadem2">
+            <br><br>
+        </div>
+
+        <div>
+            <input type="button" value="COMPARAR" ng-click="comparar()">
+            <br><br>
+        </div>
+
+        <p>Soma Homem mais velho com Mulher mais nova >>> {{somahm}}</p>
+        <p>Multiplicação Mulher mais velha com Homem mais novo >>> {{multimh}}</p>
+    </div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("comparaidade", function($scope){
+            $scope.comparar = function(){
+                if ($scope.idadeh1 > $scope.idadeh2 && $scope.idadem1 > $scope.idadem2){
+                    $scope.somahm = +$scope.idadeh1 + +$scope.idadem2;
+                    $scope.multimh = +$scope.idadem1 * +$scope.idadeh2;
+                } else {
+                    $scope.somahm = +$scope.idadeh2 + +$scope.idadem1;
+                    $scope.multimh = +$scope.idadem2 * +$scope.idadeh1;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

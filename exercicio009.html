@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercício-09 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="saldoemconta">
+        <h1>Saldo Negativo ou Positivo?</h1>
+
+        <div>
+            <label for="numeroconta">Número da Conta: </label>
+            <input type="text" id="numeroconta" ng-model="numconta">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="saldoconta">Saldo Atual: </label>
+            <input type="text" id="saldoconta" ng-model="saldo">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="creditoconta">Crédito em Conta: </label>
+            <input type="text" id="creditoconta" ng-model="credito">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="debitoconta">Débito em Conta: </label>
+            <input type="text" id="debitoconta" ng-model="debito">
+            <br><br>
+        </div>
+
+        <div>
+            <input type="button" value="CALCULAR" id="botao" ng-click="calcular()">
+            <br><br>
+        </div>
+
+        <p>Número da Conta >>> {{numconta}}</p>
+        <p>Saldo Total em Conta >>> {{saldototal}}</p>
+        <p>{{mensagem}}</p>
+    </div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+
+        app.controller("saldoemconta",function($scope){
+
+            $scope.calcular = function(){
+
+                $scope.saldototal = (+$scope.saldo + +$scope.credito) - +$scope.debito;
+
+                if($scope.saldototal > 0){
+                    //alert("Saldo Positivo!!!");
+                    $scope.mensagem = "SALDO POSITIVO!!!"
+                }
+                else{
+                    //alert("Saldo Negativo!!!");
+                    $scope.mensagem = "SALDO NEGATIVO!!!"
+                }
+        }
+        });
+    </script>
+</body>
+</html>

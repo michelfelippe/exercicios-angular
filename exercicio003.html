@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercicio-03 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="eleitores">
+
+    <h1>Eleitores</h1>
+
+    <label for="valortotalvoto">Digite o Total de Votos dos Eleitores</label>
+    <input type="text" id="valortotalvotos" ng-model="valortotalvotos">
+    <br><br>
+    <label for="valorvotobranco">Digite o Total de Votos <strong>BRANCO</strong></label>
+    <input type="text" id="valorvotobranco" ng-model="valorvotobranco">
+    <br><br>
+    <label for="valorvotonulo">Digite o Total de Votos <strong>NULO</strong></label>
+    <input type="text" id="valorvotonulo" ng-model="valorvotonulo">
+    <br><br>
+    <label for="valorvotovalido">Digite o Total de Votos <strong>VÁLIDOS</strong></label>
+    <input type="text" id="valorvotovalido" id="valorvotovalido" ng-model="valorvotovalido">
+    <br><br>
+
+    <p>Valor Total de Votos Branco: %{{percentBranco}}</p>
+    <p>Valor Total de Votos Nulo: %{{percentNulo}}</p>
+    <p>Valor Total de Votos Válidos: %{{percentValido}}</p>
+    <p>Total de Votos: {{totVotos}}</p>
+
+    <input type="button" value="CALCULAR!" ng-click="calculo()">
+    </div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+
+        app.controller("eleitores", function($scope){
+            $scope.calculo = function(){
+                $scope.percentBranco = (100 * $scope.valorvotobranco) / $scope.valortotalvotos;
+                $scope.percentNulo = (100 * $scope.valorvotonulo) / $scope.valortotalvotos;
+                $scope.percentValido = (100 * $scope.valorvotovalido) / $scope.valortotalvotos;
+                $scope.totVotos = (+$scope.valorvotovalido + +$scope.valorvotobranco + +$scope.valorvotonulo);
+                
+            }
+        });
+    </script>
+</body>
+</html>

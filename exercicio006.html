@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Exercício-06 Angular.JS</title>
+</head>
+<body>
+    <div ng-app="meuApp" ng-controller="revendedora">
+        <h1>Salário e Comissão - Revendedora</h1>
+
+        <div>
+            <label for="salario">Salário Fixo: </label>
+            <input type="text" id="salario" ng-model="vsalario" placeholder="R$1000,00">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="carrosvendidos">Carros Vendidos: </label>
+            <input type="text" id="carrosvendidos" ng-model="quantcarrosvendidos" placeholder="5">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="valorporcarro">Valor por Carro: </label>
+            <input type="text" id="valorporcarro" ng-model="valporcarro" placeholder="R$500,00">
+            <br><br>
+        </div>
+
+        <div>
+            <label for="vendastotais">Vendas Totais: </label>
+            <input type="text" id="vendastotais" ng-model="ventot" placeholder="R$50000,00">
+            <br><br>
+        </div>
+
+        <div>
+            <input type="button" id="botao" value="CALCULAR" ng-click="salario()">
+        </div>
+
+        <p>Salário Total >>> {{valsaltotal}}</p>
+    </div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+            app.controller("revendedora", function($scope){
+                $scope.salario = function(){
+                    $scope.valsemtaxa = +$scope.vsalario + (+$scope.quantcarrosvendidos * +$scope.valporcarro)
+                    $scope.valsaltotal = +$scope.valsemtaxa + (+$scope.ventot * 0.05)
+                }
+            });
+    </script>
+
+</body>
+</html>
